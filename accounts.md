@@ -1,0 +1,10 @@
+| userid           | password | auth_flag |
+| ---------------- | -------- | --------- |
+| alicezhang       | p@ssw0rd | admin     |
+| bobli            | p@ssw0rd | customer  |
+| dianaliu         | p@ssw0rd | customer  |
+| ericchenemployee | p@ssw0rd | user      |
+| peterwong        | p@ssw0rd | user      |
+| admin            | admin    | admin     |
+| user             | user     | user      |
+| customer         | customer | customer  |
