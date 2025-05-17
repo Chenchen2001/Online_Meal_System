@@ -14,3 +14,5 @@ This is an online meal order system for resaurants. There're three kinds of auth
 - For admins, they can order meals, deal with orders, manege users, categories and foods and arrange settings.
 
 The whole system is constructed on `antd`, developed with the help of AIGC tools like ChatGPT and DeepSeek.
+
+Server port can be modified at `PORT` of `/server/.env`, request URL can be modifed at `BASE_URL` of `/proj/src/index.js`.
