@@ -5,11 +5,11 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const BASE_URL = "http://localhost:5000/"
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App baseUrl="http://localhost:5000/"/>
+      <App baseUrl={BASE_URL}/>
     </BrowserRouter>
   </React.StrictMode>
 );
-
