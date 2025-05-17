@@ -10,9 +10,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '011119',
+  host     : '<fill in your host here>',
+  user     : '<fill in your user here>',
+  password : '<fill in your pwd here>',
   database : 'sky_take_out'
 });
 
