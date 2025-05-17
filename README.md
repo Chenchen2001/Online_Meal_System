@@ -1,2 +1,2 @@
-# CangQiong
-A Springboot+SSM Java Project
+# Online Meal Order System
+A React.js + Node.js + MySQL Project
