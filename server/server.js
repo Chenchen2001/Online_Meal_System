@@ -624,10 +624,6 @@ app.get("/getMyOrders", authenticateToken, (req, res) => {
   connection.query(sql, [user_id], (err, results) => {
     if (err) return res.status(500).json({ message: "Failed to fetch orders" });
 
-    results.forEach(order => {
-      order.items = JSON.parse(order.items);
-    });
-
     res.json({ orders: results });
   });
 });
@@ -653,14 +649,7 @@ app.get("/getAllOrders", authenticateToken, (req, res) => {
   `;
 
   connection.query(sql, (err, results) => {
-    if (err) {
-      console.error('Error fetching all orders:', err);
-      return res.status(500).json({ message: "Failed to fetch orders" });
-    }
-
-    results.forEach(order => {
-      order.items = JSON.parse(order.items);
-    });
+    if (err) return res.status(500).json({ message: "Failed to fetch orders" });
 
     res.json({ orders: results });
   });
