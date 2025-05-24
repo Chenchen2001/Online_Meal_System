@@ -1,3 +1,7 @@
+The accounts below are the default accounts provided by `serverdata.sql`, also available in Live Demo.
+
+For security reasons, Live Demo URL is not available on Github.
+
 | userid           | password | auth_flag |
 | ---------------- | -------- | --------- |
 | alicezhang       | p@ssw0rd | admin     |
