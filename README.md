@@ -1,6 +1,10 @@
 # Online Meal Order System
 A React.js + Node.js + MySQL Project
 
+The frontend supports i18n for simplified Chinese, Hong Kong traditional Chinese and English.
+
+The backend supports English only.
+
 - `completed` folder is the compiled react frontend program
 - `server` folder is the backend program
 - `proj` folder is the source code of the react frontend program
