@@ -1,0 +1,320 @@
+{
+  "login": {
+    "welcomeBack": "Welcome Back",
+    "username": "Username",
+    "usernamePlaceholder": "Please Input Your Username",
+    "password": "Password",
+    "passwordPlaceholder": "Please Input your Password",
+    "loginButton": "Login",
+    "registerInfo": "Don't have account?",
+    "registerIcon": "Sign Up!",
+    "githubIntro": "Want to get the source code and account?",
+    "github": "Click here!"
+  },
+  "register": {
+    "title": "Create Account",
+    "username": "Username",
+    "usernamePlaceholder": "Please Input Your Username",
+    "password": "Password",
+    "passwordPlaceholder": "Please Input your Password",
+    "register": "Register",
+    "signInInfo": "Already have an account?",
+    "signIn": "Sign In!"
+  },
+  "main": {
+    "whenChangeLanguage": "Note that data from the database can not change language",
+    "newMsg": "New message received",
+    "newMsgPop": "No message function",
+    "sysUpdate": "System update available",
+    "sysUpdatePop":"No system update",
+    "failFetchData":"Failed to fetch user data, try RELOGIN",
+    "profile": "Profile",
+    "logout": "Logout",
+    "menu": {
+      "order": "Order",
+      "dashboard": "Dashboard",
+      "foodMgmt": "Food Management",
+      "userMgmt": "User Management",
+      "catMgmt": "Category Management",
+      "settings": "Settings"
+    },
+    "headline": {
+      "order": "Place an Order",
+      "dashboard": "Today's Sales",
+      "category": "Category List",
+      "users": "User List",
+      "foods": "Food List",
+      "settings": "Settings"
+    }
+  },
+  "cat": {
+    "title": "Category Management",
+    "failFetchData": "Failed to fetch category data, try RELOGIN",
+    "failDeleteData": "Failed to delete category",
+    "add": "Add Category",
+    "edit": "Edit Category",
+    "col": {
+      "id": "ID",
+      "cat": "Category",
+      "sort": "Sort",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "action": "Actions",
+      "edit": "Edit",
+      "delTitle": "Delete the item",
+      "delDesc": "Are you sure to inactive this item?",
+      "delOK": "Yes",
+      "delCancel": "No",
+      "delInactive": "Inactive"
+    },
+    "modal": {
+      "name": "Category Name",
+      "nameMsg": "Please enter category name",
+      "namePlaceholder": "Enter category name",
+      "status": "Status",
+      "avail": "Available",
+      "unsvail": "Unavailable",
+      "sort": "Sort Order",
+      "sortMsg": "Please enter sort order",
+      "ok": "Submit",
+      "cancel": "Cancel"
+    }
+  },
+  "order": {
+    "title": "Place Your Order",
+    "button": {
+      "myOrders": "My Orders",
+      "submit": "Submit Order"
+    },
+    "message": {
+      "loadFail": "Failed to load menu or categories",
+      "loadMyOrdersFail": "Failed to load your orders",
+      "noDishesSelected": "No dishes selected",
+      "orderSuccess": "Order placed!",
+      "orderFail": "Failed to place order"
+    },
+    "collapse": {
+      "noDishes": "No dishes"
+    },
+    "modal": {
+      "title": "My Orders",
+      "created": "Created"
+    },
+    "orderItem": {
+      "orderId": "Order #",
+      "status": "Status",
+      "total": "Total"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "stats": {
+      "todayOrders": "Today's Orders",
+      "todayRevenue": "Today's Revenue",
+      "pendingOrders": "Pending Orders"
+    },
+    "orders": {
+      "title": "Recent Orders",
+      "refresh": "Refresh",
+      "columns": {
+        "orderId": "Order ID",
+        "status": "Status",
+        "total": "Total",
+        "items": "Items",
+        "time": "Time",
+        "action": "Action",
+        "noActions": "No actions available"
+      },
+      "expanded": {
+        "itemsTitle": "Order Items",
+        "total": "Total",
+        "acceptTime": "Time to accept"
+      }
+    },
+    "actions": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "complete": "Mark as Completed"
+    },
+    "messages": {
+      "acceptSuccess": "Order accepted successfully",
+      "acceptError": "Failed to accept order",
+      "rejectSuccess": "Order rejected successfully",
+      "rejectError": "Failed to reject order",
+      "completeSuccess": "Order marked as completed",
+      "completeError": "Failed to complete order",
+      "fetchError": "Failed to fetch data. "
+    }
+  },
+  "foodMgmt": {
+    "title": "Food Management",
+    "actions": {
+      "addDish": "Add Dish",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "search": "Search"
+    },
+    "columns": {
+      "id": "ID",
+      "name": "Food Name",
+      "category": "Category",
+      "price": "Price",
+      "image": "Image",
+      "description": "Description",
+      "status": "Status",
+      "actions": "Actions",
+      "noImage": "No image",
+      "active": "Active",
+      "inactive": "Inactive",
+      "unknownCategory": "Unknown"
+    },
+    "modal": {
+      "titleEdit": "Edit Meal",
+      "titleAdd": "Add Meal",
+      "form": {
+        "dishName": "Dish Name",
+        "price": "Price",
+        "category": "Category",
+        "status": "Status",
+        "description": "Description",
+        "imageUrl": "URL",
+        "available": "Available",
+        "unavailable": "Unavailable"
+      }
+    },
+    "filters": {
+      "searchByName": "Search by name",
+      "filterByCategory": "Filter by category",
+      "clearNameTooltip": "Clear the input holder to remove condition",
+      "clearCategoryTooltip": "Click the cross to remove condition"
+    },
+    "deleteConfirm": {
+      "title": "Delete the item",
+      "description": "Are you sure to delete this item?",
+      "okText": "Yes",
+      "cancelText": "No"
+    },
+    "messages": {
+      "deleteSuccess": "Dish deleted successfully",
+      "deleteError": "Failed to delete food data",
+      "updateSuccess": "Dish updated successfully",
+      "updateError": "Failed to edit the dish",
+      "createSuccess": "Dish created successfully",
+      "createError": "Failed to add new dish",
+      "fetchError": "Failed to fetch food data, try RELOGIN",
+      "categoryFetchError": "Failed to fetch category data, try RELOGIN"
+    }
+  },
+  "profile":{
+    "accountSettings": "Account Settings",
+    "loadUserInfo": "Load User Info (Click 2 times for privacy)",
+    "openid": "OpenID",
+    "openidPlaceholder": "OpenID",
+    "name": "Name",
+    "namePlaceholder": "Name",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderOther": "Don't want to provide",
+    "genderPlaceholder": "Please choose your preferred gender",
+    "oldPassword": "Old Password",
+    "oldPasswordPlaceholder": "Enter old password if changing",
+    "oldPasswordValidation": "Please input your old password if changing new password",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "newPasswordValidation": "Please input old password first",
+    "phone": "Phone Number(you can choose to keep here empty)",
+    "phonePlaceholder": "Phone number",
+    "idNumber": "ID Number(you can choose to keep here empty)",
+    "idNumberPlaceholder": "ID Number",
+    "avatar": "Avatar URL(you can choose to keep here empty)",
+    "avatarPlaceholder": "Enter avatar image URL",
+    "avatarPreview": "Avatar Preview",
+    "updateProfile": "Update Profile",
+    "fetchUserError": "Failed to fetch user",
+    "updateSuccess": "Profile updated. Please re-login.",
+    "updateFail": "Update failed"
+  },
+  "settings": {
+    "systemSettings": "System Settings",
+    "fetchSettingsError": "Failed to fetch settings, try RELOGIN",
+    "updateSuccess": "Settings updated successfully.",
+    "updateError": "Failed to update settings.",
+    "shopName": "Shop Name",
+    "defaultCategory": "Default Category ID",
+    "autoAccept": "Auto Accept Orders",
+    "customerPhone": "Customer Service Phone",
+    "saveSettings": "Save Settings"
+  },
+  "user": {
+    "title": "User Management",
+    "addUser": "Add User",
+    "editUser": "Edit User",
+    "modalSubmit": "Submit",
+    "modalCancel": "Cancel",
+    "form": {
+      "openid": "OpenID",
+      "nickname": "Nickname",
+      "phone": "Phone",
+      "gender": "Gender",
+      "genderOptions": {
+        "M": "Male",
+        "F": "Female",
+        "-": "Prefer not to say"
+      },
+      "idNumber": "ID Number",
+      "authority": "Authority",
+      "authorityOptions": {
+        "admin": "Admin",
+        "user": "User",
+        "customer": "Customer"
+      },
+      "avatar": "Avatar",
+      "avatarPlaceholder": "No Avatar Type in URL Above",
+      "nicknameRequired": "Please input nickname"
+    },
+    "table": {
+      "columns": {
+        "id": "ID",
+        "nickname": "Nickname",
+        "avatar": "Avatar",
+        "phone": "Phone",
+        "gender": "Gender",
+        "authority": "Auth",
+        "actions": "Actions"
+      },
+      "noAvatar": "No Avatar"
+    },
+    "buttons": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "search": "Search",
+      "reset": "Reset"
+    },
+    "tooltips": {
+      "editYourself": "Please go to profile to edit",
+      "deleteYourself": "You can't delete yourself",
+      "inputHint": "Clear the input holder to remove condition",
+      "selectHint": "Click the cross to remove condition"
+    },
+    "popconfirm": {
+      "deleteTitle": "Delete the user",
+      "deleteDesc": "Are you sure to delete this user?",
+      "okText": "Yes",
+      "cancelText": "No"
+    },
+    "messages": {
+      "fetchError": "Failed to fetch user data, try RELOGIN",
+      "deleteSuccess": "Deleted successfully",
+      "deleteError": "Failed to delete",
+      "operateSuccess": {
+        "add": "Added",
+        "edit": "Updated"
+      },
+      "operateError": "Failed to operate"
+    }
+  }
+}

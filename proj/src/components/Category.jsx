@@ -20,6 +20,7 @@ import {
   PlusOutlined
 } from '@ant-design/icons';
 import axios from 'axios'
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 
 
@@ -30,6 +31,7 @@ export default function Category({ token, baseUrl }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const getCatData = () => {
     setLoading(true);
@@ -40,7 +42,7 @@ export default function Category({ token, baseUrl }) {
       setCatdata(result.data.data);
     })
     .catch(err => {
-      messageApi.error('Failed to fetch category data, try RELOGIN');
+      messageApi.error(t('cat.failFetchData'));
       console.log("Failed to get category data", err)
     })
     .finally(() => setLoading(false));
@@ -66,7 +68,7 @@ export default function Category({ token, baseUrl }) {
       getCatData();
     })
     .catch(err => {
-      messageApi.error('Failed to delete category');
+      messageApi.error(t('cat.failDeleteData'));
     });
   };
 
@@ -108,47 +110,47 @@ export default function Category({ token, baseUrl }) {
 
   const columns = [
     {
-      title: "ID",
+      title: t('cat.col.id'),
       dataIndex: 'id',
       align: 'center'
     },
     {
-      title: 'Category',
+      title: t('cat.col.cat'),
       dataIndex: 'name',
       align: 'center'
     },
     {
-      title: 'Sort',
+      title: t('cat.col.sort'),
       dataIndex: 'sort',
       align: 'center'
     },
     {
-      title: 'Status',
+      title: t('cat.col.status'),
       dataIndex: 'status',
       render: (status) => (
         <Badge
           style={{ width: "65px" }}
           status={status === 1 ? 'success' : 'error'}
-          text={status === 1 ? 'Active' : 'Inactive'}
+          text={status === 1 ? t('cat.col.active') : t('cat.col.inactive')}
         />
       ),
       align: 'center'
     },
     {
-      title: 'Actions',
+      title: t('cat.col.action'),
       render: (_, record) => (
         <Space size="middle">
           <Button type="primary" onClick={() => handleEdit(record)} icon={<EditOutlined />} size="small">
-            Edit
+            {t('cat.col.edit')}
           </Button>
           <Popconfirm
-            title="Delete the item"
-            description="Are you sure to inactive this item?"
-            okText="Yes"
-            cancelText="No"
+            title={t('cat.col.delTitle')}
+            description={t('cat.col.delDesc')}
+            okText={t('cat.col.delOK')}
+            cancelText={t('cat.col.delCancel')}
             onConfirm={() => handleDelete(record)}
           >
-            <Button danger icon={<DeleteOutlined />} size="small">Inactive</Button>
+            <Button danger icon={<DeleteOutlined />} size="small">{t('cat.col.delInactive')}</Button>
           </Popconfirm>
         </Space>
       ),
@@ -160,10 +162,10 @@ export default function Category({ token, baseUrl }) {
     <>
       {contextHolder}
       <Card
-        title="Category Management"
+        title={t('cat.title')}
         extra={
           <Button type="primary" onClick={handleAdd}>
-            <PlusOutlined /> Add Category
+            <PlusOutlined /> {t('cat.add')}
           </Button>
         }
         style={{overflow: 'auto'}}
@@ -179,30 +181,32 @@ export default function Category({ token, baseUrl }) {
       </Card>
 
       <Modal
-        title={editingRecord ? "Edit Category" : "Add Category"}
+        title={editingRecord ? t('cat.edit') : t('cat.add')}
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
         onOk={handleModalOk}
+        okText={t('cat.modal.ok')}
+        cancelText={t('cat.modal.cancel')}
         destroyOnHidden
       >
         <Form form={form} layout="vertical">
           <Form.Item
-            label="Category Name"
+            label={t("cat.modal.name")}
             name="name"
-            rules={[{ required: true, message: 'Please enter category name' }]}
+            rules={[{ required: true, message: t("cat.modal.nameMsg") }]}
           >
-            <Input placeholder="Enter category name" />
+            <Input placeholder={t('cat.modal.namePlaceholder')} />
           </Form.Item>
-          <Form.Item label="Status" name="status">
+          <Form.Item label={t("cat.modal.status")} name="status">
             <Select>
-              <Select.Option value={1}>Available</Select.Option>
-              <Select.Option value={0}>Unavailable</Select.Option>
+              <Select.Option value={1}>{t("cat.modal.avail")}</Select.Option>
+              <Select.Option value={0}>{t("cat.modal.unsvail")}</Select.Option>
             </Select>
               </Form.Item>
           <Form.Item
-            label="Sort Order"
+            label={t('cat.modal.sort')}
             name="sort"
-            rules={[{ required: true, message: 'Please enter sort order' }]}
+            rules={[{ required: true, message: t("cat.modal.sortMsg") }]}
           >
             <InputNumber min={0} style={{ width: '100%' }} />
           </Form.Item>

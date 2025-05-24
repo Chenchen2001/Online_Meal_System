@@ -1,0 +1,320 @@
+{
+  "login": {
+    "welcomeBack": "欢迎回来",
+    "username": "用户名",
+    "usernamePlaceholder": "请输入用户名",
+    "password": "密码",
+    "passwordPlaceholder": "请输入密码",
+    "loginButton": "登录",
+    "registerInfo": "没有账号？",
+    "registerIcon": "点此注册！",
+    "githubIntro": "想要了解源代码或获得一个已有账号？",
+    "github": "点击这里！"
+  },
+  "register": {
+    "title": "创建账号",
+    "username": "用户名",
+    "usernamePlaceholder": "请输入用户名",
+    "password": "密码",
+    "passwordPlaceholder": "请输入密码",
+    "register": "注册",
+    "signInInfo": "已经有账号了？",
+    "signIn": "点此登录！"
+  },
+  "main": {
+    "whenChangeLanguage": "注意：数据库中的数据不会随语言切换而改变",
+    "newMsg": "收到新消息",
+    "newMsgPop": "暂无消息功能",
+    "sysUpdate": "系统更新可用",
+    "sysUpdatePop": "暂无系统更新",
+    "failFetchData": "获取用户数据失败，请尝试重新登录",
+    "profile": "个人资料",
+    "logout": "退出登录",
+    "menu": {
+      "order": "订单",
+      "dashboard": "仪表盘",
+      "foodMgmt": "食品管理",
+      "userMgmt": "用户管理",
+      "catMgmt": "分类管理",
+      "settings": "设置"
+    },
+    "headline": {
+      "order": "下单",
+      "dashboard": "今日销售",
+      "category": "分类列表",
+      "users": "用户列表",
+      "foods": "食品列表",
+      "settings": "设置"
+    }
+  },
+  "cat": {
+    "title": "分类管理",
+    "failFetchData": "获取分类数据失败，请尝试重新登录",
+    "failDeleteData": "删除分类失败",
+    "add": "添加分类",
+    "edit": "编辑分类",
+    "col": {
+      "id": "ID",
+      "cat": "分类",
+      "sort": "排序",
+      "status": "状态",
+      "active": "启用",
+      "inactive": "禁用",
+      "action": "操作",
+      "edit": "编辑",
+      "delTitle": "删除项目",
+      "delDesc": "确定要禁用此项目吗？",
+      "delOK": "是",
+      "delCancel": "否",
+      "delInactive": "禁用"
+    },
+    "modal": {
+      "name": "分类名称",
+      "nameMsg": "请输入分类名称",
+      "namePlaceholder": "输入分类名称",
+      "status": "状态",
+      "avail": "可用",
+      "unsvail": "不可用",
+      "sort": "排序",
+      "sortMsg": "请输入排序",
+      "ok": "提交",
+      "cancel": "取消"
+    }
+  },
+  "order": {
+    "title": "下单",
+    "button": {
+      "myOrders": "我的订单",
+      "submit": "提交订单"
+    },
+    "message": {
+      "loadFail": "加载菜单或分类失败",
+      "loadMyOrdersFail": "加载订单失败",
+      "noDishesSelected": "未选择菜品",
+      "orderSuccess": "下单成功！",
+      "orderFail": "下单失败"
+    },
+    "collapse": {
+      "noDishes": "暂无图片"
+    },
+    "modal": {
+      "title": "我的订单",
+      "created": "创建时间"
+    },
+    "orderItem": {
+      "orderId": "订单号",
+      "status": "状态",
+      "total": "总计"
+    }
+  },
+  "dashboard": {
+    "title": "仪表盘",
+    "stats": {
+      "todayOrders": "今日订单",
+      "todayRevenue": "今日收入",
+      "pendingOrders": "待处理订单"
+    },
+    "orders": {
+      "title": "最近订单",
+      "refresh": "刷新",
+      "columns": {
+        "orderId": "订单ID",
+        "status": "状态",
+        "total": "总计",
+        "items": "商品",
+        "time": "时间",
+        "action": "操作",
+        "noActions": "无可用操作"
+      },
+      "expanded": {
+        "itemsTitle": "订单商品",
+        "total": "总计",
+        "acceptTime": "接单时间"
+      }
+    },
+    "actions": {
+      "accept": "接受",
+      "reject": "拒绝",
+      "complete": "标记完成"
+    },
+    "messages": {
+      "acceptSuccess": "接单成功",
+      "acceptError": "接单失败",
+      "rejectSuccess": "拒单成功",
+      "rejectError": "拒单失败",
+      "completeSuccess": "订单标记完成",
+      "completeError": "完成订单失败",
+      "fetchError": "获取数据失败。"
+    }
+  },
+  "foodMgmt": {
+    "title": "食品管理",
+    "actions": {
+      "addDish": "添加菜品",
+      "edit": "编辑",
+      "delete": "删除",
+      "save": "保存",
+      "cancel": "取消",
+      "search": "搜索"
+    },
+    "columns": {
+      "id": "ID",
+      "name": "食品名称",
+      "category": "分类",
+      "price": "价格",
+      "image": "图片",
+      "description": "描述",
+      "status": "状态",
+      "actions": "操作",
+      "noImage": "无图片",
+      "active": "启用",
+      "inactive": "禁用",
+      "unknownCategory": "未知"
+    },
+    "modal": {
+      "titleEdit": "编辑餐品",
+      "titleAdd": "添加餐品",
+      "form": {
+        "dishName": "菜品名称",
+        "price": "价格",
+        "category": "分类",
+        "status": "状态",
+        "description": "描述",
+        "imageUrl": "URL",
+        "available": "可用",
+        "unavailable": "不可用"
+      }
+    },
+    "filters": {
+      "searchByName": "按名称搜索",
+      "filterByCategory": "按分类筛选",
+      "clearNameTooltip": "清空输入框可移除条件",
+      "clearCategoryTooltip": "点击叉号可移除条件"
+    },
+    "deleteConfirm": {
+      "title": "删除项目",
+      "description": "确定要删除此项目吗？",
+      "okText": "是",
+      "cancelText": "否"
+    },
+    "messages": {
+      "deleteSuccess": "删除成功",
+      "deleteError": "删除食品数据失败",
+      "updateSuccess": "更新成功",
+      "updateError": "编辑菜品失败",
+      "createSuccess": "创建成功",
+      "createError": "添加新菜品失败",
+      "fetchError": "获取食品数据失败，请尝试重新登录",
+      "categoryFetchError": "获取分类数据失败，请尝试重新登录"
+    }
+  },
+  "profile": {
+    "accountSettings": "账户设置",
+    "loadUserInfo": "加载用户信息（双击保护隐私）",
+    "openid": "OpenID",
+    "openidPlaceholder": "OpenID",
+    "name": "姓名",
+    "namePlaceholder": "姓名",
+    "gender": "性别",
+    "genderMale": "男",
+    "genderFemale": "女",
+    "genderOther": "不愿透露",
+    "genderPlaceholder": "请选择性别",
+    "oldPassword": "旧密码",
+    "oldPasswordPlaceholder": "如需修改请输入旧密码",
+    "oldPasswordValidation": "修改密码需先输入旧密码",
+    "newPassword": "新密码",
+    "newPasswordPlaceholder": "输入新密码",
+    "newPasswordValidation": "请先输入旧密码",
+    "phone": "电话号码（可选）",
+    "phonePlaceholder": "电话号码",
+    "idNumber": "身份证号（可选）",
+    "idNumberPlaceholder": "身份证号",
+    "avatar": "头像URL（可选）",
+    "avatarPlaceholder": "输入头像图片URL",
+    "avatarPreview": "头像预览",
+    "updateProfile": "更新资料",
+    "fetchUserError": "获取用户失败",
+    "updateSuccess": "资料已更新，请重新登录",
+    "updateFail": "更新失败"
+  },
+  "settings": {
+    "systemSettings": "系统设置",
+    "fetchSettingsError": "获取设置失败，请尝试重新登录",
+    "updateSuccess": "设置更新成功",
+    "updateError": "更新设置失败",
+    "shopName": "店铺名称",
+    "defaultCategory": "默认分类ID",
+    "autoAccept": "自动接单",
+    "customerPhone": "客服电话",
+    "saveSettings": "保存设置"
+  },
+  "user": {
+    "title": "用户管理",
+    "addUser": "添加用户",
+    "editUser": "编辑用户",
+    "modalSubmit": "提交",
+    "modalCancel": "取消",
+    "form": {
+      "openid": "OpenID",
+      "nickname": "昵称",
+      "phone": "电话",
+      "gender": "性别",
+      "genderOptions": {
+        "M": "男",
+        "F": "女",
+        "-": "不愿透露"
+      },
+      "idNumber": "身份证号",
+      "authority": "权限",
+      "authorityOptions": {
+        "admin": "管理员",
+        "user": "用户",
+        "customer": "客户"
+      },
+      "avatar": "头像",
+      "avatarPlaceholder": "无头像，请在上方输入URL",
+      "nicknameRequired": "请输入昵称"
+    },
+    "table": {
+      "columns": {
+        "id": "ID",
+        "nickname": "昵称",
+        "avatar": "头像",
+        "phone": "电话",
+        "gender": "性别",
+        "authority": "权限",
+        "actions": "操作"
+      },
+      "noAvatar": "无头像"
+    },
+    "buttons": {
+      "edit": "编辑",
+      "delete": "删除",
+      "search": "搜索",
+      "reset": "重置"
+    },
+    "tooltips": {
+      "editYourself": "请前往个人资料编辑",
+      "deleteYourself": "不能删除自己",
+      "inputHint": "清空输入框可移除条件",
+      "selectHint": "点击叉号可移除条件"
+    },
+    "popconfirm": {
+      "deleteTitle": "删除用户",
+      "deleteDesc": "确定删除此用户吗？",
+      "okText": "是",
+      "cancelText": "否"
+    },
+    "messages": {
+      "fetchError": "获取用户数据失败，请尝试重新登录",
+      "deleteSuccess": "删除成功",
+      "deleteError": "删除失败",
+      "operateSuccess": {
+        "add": "添加成功",
+        "edit": "更新成功"
+      },
+      "operateError": "操作失败"
+    }
+  }
+}

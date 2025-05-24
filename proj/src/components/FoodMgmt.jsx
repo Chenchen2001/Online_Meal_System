@@ -23,8 +23,10 @@ import {
 } from '@ant-design/icons';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function FoodMgmt({ token, baseUrl }) {
+  const { t } = useTranslation();
   const [messageApi, contextHolder] = message.useMessage();
   const [foodData, setFoodData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -43,7 +45,6 @@ export default function FoodMgmt({ token, baseUrl }) {
     setModalOpen(true);
   };
 
-
   const handleDelete = (record) => {
     axios.delete(baseUrl+"deleteDish", {
       headers: {
@@ -54,13 +55,13 @@ export default function FoodMgmt({ token, baseUrl }) {
         }
     })
     .then(res=>{
-      messageApi.success(res.data.data.message)
-      fetchFoodData()
+      messageApi.success(t("foodMgmt.messages.deleteSuccess"));
+      fetchFoodData();
     })
     .catch(err=>{
-      messageApi.error('Failed to delete food data');
+      messageApi.error(t("foodMgmt.messages.deleteError"));
       console.error('Error deleting food data:', err);
-    })
+    });
   };
 
   const fetchCategories = () => {
@@ -73,7 +74,7 @@ export default function FoodMgmt({ token, baseUrl }) {
         setCategories(response.data.data || []);
       })
       .catch(error => {
-        messageApi.error('Failed to fetch category data, try RELOGIN');
+        messageApi.error(t("foodMgmt.messages.categoryFetchError"));
         console.error('Error fetching categories:', error);
       });
   };
@@ -84,13 +85,13 @@ export default function FoodMgmt({ token, baseUrl }) {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
-        messageApi.success(res.data.data.message);
+        messageApi.success(t("foodMgmt.messages.updateSuccess"));
         setEditingRecord(null);
-        setModalOpen(false)
+        setModalOpen(false);
         fetchFoodData(pagination.current, pagination.pageSize);
       })
       .catch(err => {
-        messageApi.error('Failed to edit the dish');
+        messageApi.error(t("foodMgmt.messages.updateError"));
         console.error(err);
       });
     } else {
@@ -98,18 +99,17 @@ export default function FoodMgmt({ token, baseUrl }) {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {
-        messageApi.success(res.data.data.message);
+        messageApi.success(t("foodMgmt.messages.createSuccess"));
         setEditingRecord(null);
-        setModalOpen(false)
+        setModalOpen(false);
         fetchFoodData(pagination.current, pagination.pageSize);
       })
       .catch(err => {
-        messageApi.error('Failed to add new dish');
+        messageApi.error(t("foodMgmt.messages.createError"));
         console.error(err);
       });
     }
   };
-
 
   const fetchFoodData = (page = 1, pageSize = 10) => {
     setLoading(true);
@@ -134,7 +134,7 @@ export default function FoodMgmt({ token, baseUrl }) {
       });
     })
     .catch(err => {
-      messageApi.error('Failed to fetch food data, try RELOGIN');
+      messageApi.error(t("foodMgmt.messages.fetchError"));
       console.error('Error fetching food data:', err);
     })
     .finally(() => setLoading(false));
@@ -151,78 +151,80 @@ export default function FoodMgmt({ token, baseUrl }) {
 
   const columns = [
     {
-      title: "ID",
+      title: t("foodMgmt.columns.id"),
       dataIndex: 'id',
       key: 'id',
       align: 'center'
     },
     {
-      title: 'Food name',
+      title: t("foodMgmt.columns.name"),
       dataIndex: 'name',
       key: 'name',
       align: 'center'
     },
     {
-      title: 'Category',
+      title: t("foodMgmt.columns.category"),
       dataIndex: 'category_id',
       key: 'category_id',
       render: (categoryId) => {
         const category = categories.find((e) => e.id === categoryId);
-        return category ? category.name : 'Unknown';
+        return category ? category.name : t("foodMgmt.columns.unknownCategory");
       },
       align: 'center'
     },
     {
-      title: 'Price',
+      title: t("foodMgmt.columns.price"),
       dataIndex: 'price',
       key: 'price',
       render: (price) => `￥${Number(price).toFixed(2)}`,
       align: 'center'
     },
     {
-      title: 'Image',
+      title: t("foodMgmt.columns.image"),
       dataIndex: 'image',
       key: 'image',
       render: (image) => <div style={{textAlign: 'center'}}>{image ? (
         <img src={image} alt="food" style={{ width: 50, height: 50, objectFit: 'cover' }} />
-      ) : 'No image' }</div>,
+      ) : t("foodMgmt.columns.noImage") }</div>,
       align: 'center'
     },
     {
-      title: 'Description',
+      title: t("foodMgmt.columns.description"),
       dataIndex: 'description',
       key: 'description',
       align: 'center'
     },
     {
-      title: 'Status',
+      title: t("foodMgmt.columns.status"),
       dataIndex: 'status',
       key: 'status',
       render: (status) => (
         <Badge 
           style={{width: "65px"}}
           status={status === 1 ? 'success' : 'error'} 
-          text={status === 1 ? 'Active' : 'Inactive'} 
+          text={status === 1 ? t("foodMgmt.columns.active") : t("foodMgmt.columns.inactive")} 
         />
       ),
       align: 'center'
     },
     {
-      title: 'Actions',
+      title: t("foodMgmt.columns.actions"),
       key: 'actions',
       render: (_, record) => (
         <Space size="middle">
           <Button type="primary" onClick={()=>handleEdit(record)} icon={<EditOutlined />} size="small">
-          Edit
+            {t("foodMgmt.actions.edit")}
           </Button>
           <Popconfirm
-            title="Delete the item"
-            description="Are you sure to delete this item?"
-            okText="Yes"
-            cancelText="No"
+            title={t("foodMgmt.deleteConfirm.title")}
+            description={t("foodMgmt.deleteConfirm.description")}
+            okText={t("foodMgmt.deleteConfirm.okText")}
+            cancelText={t("foodMgmt.deleteConfirm.cancelText")}
             onConfirm={()=>handleDelete(record)}
           >
-            <Button danger icon={<DeleteOutlined />} size="small">Delete</Button>
+            <Button danger icon={<DeleteOutlined />} size="small">
+              {t("foodMgmt.actions.delete")}
+            </Button>
           </Popconfirm>
         </Space>
       ),
@@ -232,173 +234,173 @@ export default function FoodMgmt({ token, baseUrl }) {
 
   return (
     <>
-    {contextHolder}
-    <Card
-      title="Food Management"
-      extra={
-        <Button type="primary" onClick={() => {
-          setEditingRecord({});
-          setModalOpen(true);
-        }}>
-          <PlusOutlined/> Add Dish
-        </Button>
-      }
-      style={{overflow: 'auto'}}
-    >
-      <div style={{ marginBottom: 16, display: 'flex', gap: 16 }}>
-        <Tooltip title="Clear the input holder to remove condition">
-        <Input
-          placeholder="Search by name"
-          value={filters.name}
-          onChange={e => setFilters({ ...filters, name: e.target.value })}
-          onPressEnter={() => fetchFoodData(1, pagination.pageSize)}
-          style={{ width: 200, minWidth: 125 }}
-        />
-        </Tooltip>
-        <Tooltip title="Click the cross to remove condition">
-        <Select
-          placeholder="Filter by category"
-          allowClear
-          value={filters.category_id || undefined}
-          onChange={value => setFilters({ ...filters, category_id: value })}
-          style={{ width: 200 }}
-        >
-          {categories.map(cat => (
-            <Select.Option key={cat.id} value={cat.id}>{cat.name}</Select.Option>
-          ))}
-        </Select>
-        </Tooltip>
-        <Button type="primary" onClick={() => fetchFoodData(1, pagination.pageSize)}>
-          Search
-        </Button>
-      </div>
-      <Spin spinning={loading}>
-        <Table 
-          columns={columns} 
-          dataSource={foodData} 
-          pagination={pagination}
-          onChange={handleTableChange}
-          bordered
-          rowKey="id"
-        />
-      </Spin>
-    </Card>
-    <Modal
-      title={`Edit Meal - ${editingRecord?.name || ''}`}
-      open={modalOpen}
-      onOk={() => {
-        setEditingRecord(null)
-        setModalOpen(false)
-      }}
-      onCancel={() => {
-        setEditingRecord(null)
-        setModalOpen(false)
-      }}
-      width={800}
-      footer={[
-        <Button key="cancel" onClick={() => {
-          setEditingRecord(null)
-          setModalOpen(false)
-        }}>
-          Cancel
-        </Button>,
-        <Button key="submit" type="primary" onClick={() => handleSubmit(editingRecord)}>
-          Save
-        </Button>
-      ]}
-    >
-      {editingRecord && (
-        <div style={{ display: 'flex', gap: 24 }}>
-          <div style={{ width: 300 }}>
-            <Image
-              width="100%"
-              src={editingRecord.image}
-              alt={editingRecord.name}
-              fallback="https://via.placeholder.com/300x200?text=Failed_to_load_picture"
-              style={{ 
-                borderRadius: 8,
-                objectFit: 'cover',
-                marginBottom: 16
-              }}
-            />
+      {contextHolder}
+      <Card
+        title={t("foodMgmt.title")}
+        extra={
+          <Button type="primary" onClick={() => {
+            setEditingRecord({});
+            setModalOpen(true);
+          }}>
+            <PlusOutlined/> {t("foodMgmt.actions.addDish")}
+          </Button>
+        }
+        style={{overflow: 'auto'}}
+      >
+        <div style={{ marginBottom: 16, display: 'flex', gap: 16 }}>
+          <Tooltip title={t("foodMgmt.filters.clearNameTooltip")}>
             <Input
-              addonBefore="URL"
-              value={editingRecord.image}
-              onChange={(e) => setEditingRecord({
-                ...editingRecord,
-                image: e.target.value
-              })}
+              placeholder={t("foodMgmt.filters.searchByName")}
+              value={filters.name}
+              onChange={e => setFilters({ ...filters, name: e.target.value })}
+              onPressEnter={() => fetchFoodData(1, pagination.pageSize)}
+              style={{ width: 200, minWidth: 125 }}
             />
-          </div>
-
-          <div style={{ flex: 1 }}>
-            <Form layout="vertical">
-              <Form.Item label="Dish Name">
-                <Input
-                  value={editingRecord.name}
-                  onChange={(e) => setEditingRecord({
-                    ...editingRecord,
-                    name: e.target.value
-                  })}
-                />
-              </Form.Item>
-
-              <Form.Item label="Price">
-                <InputNumber
-                  style={{ width: '100%' }}
-                  min={0}
-                  addonAfter="CNY"
-                  value={editingRecord.price}
-                  onChange={(value) => setEditingRecord({
-                    ...editingRecord,
-                    price: value
-                  })}
-                />
-              </Form.Item>
-
-              <Form.Item label="Category">
-                <Select
-                  value={editingRecord.category_id}
-                  onChange={(value) =>
-                    setEditingRecord({ ...editingRecord, category_id: value })
-                  }
-                >
-                  {categories.map((cat) => (
-                    <Select.Option key={cat.id} value={cat.id}>
-                      {cat.name}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </Form.Item>
-
-              <Form.Item label="Status">
-                <Select
-                  value={editingRecord.status}
-                  onChange={(value) => setEditingRecord({
-                    ...editingRecord,
-                    status: value
-                  })}
-                >
-                  <Select.Option value={1}>Available</Select.Option>
-                  <Select.Option value={0}>Unavailable</Select.Option>
-                </Select>
-              </Form.Item>
-
-              <Form.Item label="description">
-                <Input.TextArea
-                  rows={4}
-                  value={editingRecord.description}
-                  onChange={(e) => setEditingRecord({
-                    ...editingRecord,
-                    description: e.target.value
-                  })}
-                />
-              </Form.Item>
-            </Form>
-          </div>
+          </Tooltip>
+          <Tooltip title={t("foodMgmt.filters.clearCategoryTooltip")}>
+            <Select
+              placeholder={t("foodMgmt.filters.filterByCategory")}
+              allowClear
+              value={filters.category_id || undefined}
+              onChange={value => setFilters({ ...filters, category_id: value })}
+              style={{ width: 200 }}
+            >
+              {categories.map(cat => (
+                <Select.Option key={cat.id} value={cat.id}>{cat.name}</Select.Option>
+              ))}
+            </Select>
+          </Tooltip>
+          <Button type="primary" onClick={() => fetchFoodData(1, pagination.pageSize)}>
+            {t("foodMgmt.actions.search")}
+          </Button>
         </div>
-      )}
-    </Modal>
+        <Spin spinning={loading}>
+          <Table 
+            columns={columns} 
+            dataSource={foodData} 
+            pagination={pagination}
+            onChange={handleTableChange}
+            bordered
+            rowKey="id"
+          />
+        </Spin>
+      </Card>
+      <Modal
+        title={editingRecord?.name ? t('foodMgmt.modal.titleEdit')+" - "+editingRecord.name : t('foodMgmt.modal.titleAdd')}
+        open={modalOpen}
+        onOk={() => {
+          setEditingRecord(null);
+          setModalOpen(false);
+        }}
+        onCancel={() => {
+          setEditingRecord(null);
+          setModalOpen(false);
+        }}
+        width={800}
+        footer={[
+          <Button key="cancel" onClick={() => {
+            setEditingRecord(null);
+            setModalOpen(false);
+          }}>
+            {t("foodMgmt.actions.cancel")}
+          </Button>,
+          <Button key="submit" type="primary" onClick={() => handleSubmit(editingRecord)}>
+            {t("foodMgmt.actions.save")}
+          </Button>
+        ]}
+      >
+        {editingRecord && (
+          <div style={{ display: 'flex', gap: 24 }}>
+            <div style={{ width: 300 }}>
+              <Image
+                width="100%"
+                src={editingRecord.image}
+                alt={editingRecord.name}
+                fallback="https://via.placeholder.com/300x200?text=Failed_to_load_picture"
+                style={{ 
+                  borderRadius: 8,
+                  objectFit: 'cover',
+                  marginBottom: 16
+                }}
+              />
+              <Input
+                addonBefore={t("foodMgmt.modal.form.imageUrl")}
+                value={editingRecord.image}
+                onChange={(e) => setEditingRecord({
+                  ...editingRecord,
+                  image: e.target.value
+                })}
+              />
+            </div>
+
+            <div style={{ flex: 1 }}>
+              <Form layout="vertical">
+                <Form.Item label={t("foodMgmt.modal.form.dishName")}>
+                  <Input
+                    value={editingRecord.name}
+                    onChange={(e) => setEditingRecord({
+                      ...editingRecord,
+                      name: e.target.value
+                    })}
+                  />
+                </Form.Item>
+
+                <Form.Item label={t("foodMgmt.modal.form.price")}>
+                  <InputNumber
+                    style={{ width: '100%' }}
+                    min={0}
+                    addonAfter="CNY"
+                    value={editingRecord.price}
+                    onChange={(value) => setEditingRecord({
+                      ...editingRecord,
+                      price: value
+                    })}
+                  />
+                </Form.Item>
+
+                <Form.Item label={t("foodMgmt.modal.form.category")}>
+                  <Select
+                    value={editingRecord.category_id}
+                    onChange={(value) =>
+                      setEditingRecord({ ...editingRecord, category_id: value })
+                    }
+                  >
+                    {categories.map((cat) => (
+                      <Select.Option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+
+                <Form.Item label={t("foodMgmt.modal.form.status")}>
+                  <Select
+                    value={editingRecord.status}
+                    onChange={(value) => setEditingRecord({
+                      ...editingRecord,
+                      status: value
+                    })}
+                  >
+                    <Select.Option value={1}>{t("foodMgmt.modal.form.available")}</Select.Option>
+                    <Select.Option value={0}>{t("foodMgmt.modal.form.unavailable")}</Select.Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item label={t("foodMgmt.modal.form.description")}>
+                  <Input.TextArea
+                    rows={4}
+                    value={editingRecord.description}
+                    onChange={(e) => setEditingRecord({
+                      ...editingRecord,
+                      description: e.target.value
+                    })}
+                  />
+                </Form.Item>
+              </Form>
+            </div>
+          </div>
+        )}
+      </Modal>
     </>
   );
 }

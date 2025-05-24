@@ -2,12 +2,15 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import loginImage from '../../assets/login-img.png'; 
+import { Select } from 'antd'
+import { useTranslation } from 'react-i18next';
 
 export default function Login({ setToken, baseUrl }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { t, i18n } = useTranslation();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent form submission reload
@@ -59,7 +62,7 @@ export default function Login({ setToken, baseUrl }) {
                         marginBottom: '30px',
                         color: '#333',
                         textAlign: 'center'
-                    }}>Welcome Back</h2>
+                    }}>{t("login.welcomeBack")}</h2>
                     
                     {error && (
                         <div style={{
@@ -76,7 +79,7 @@ export default function Login({ setToken, baseUrl }) {
                                 marginBottom: '8px',
                                 color: '#555',
                                 fontSize: '14px'
-                            }}>Username</label>
+                            }}>{t("login.username")}</label>
                             <input
                                 type="text"
                                 value={username}
@@ -88,6 +91,7 @@ export default function Login({ setToken, baseUrl }) {
                                     borderRadius: '4px',
                                     fontSize: '16px'
                                 }}
+                                placeholder={t("login.usernamePlaceholder")}
                                 required
                             />
                         </div>
@@ -98,7 +102,7 @@ export default function Login({ setToken, baseUrl }) {
                                 marginBottom: '8px',
                                 color: '#555',
                                 fontSize: '14px'
-                            }}>Password</label>
+                            }}>{t("login.password")}</label>
                             <input
                                 type="password"
                                 value={password}
@@ -110,6 +114,7 @@ export default function Login({ setToken, baseUrl }) {
                                     borderRadius: '4px',
                                     fontSize: '16px'
                                 }}
+                                placeholder={t("login.passwordPlaceholder")}
                                 required
                             />
                         </div>
@@ -130,18 +135,27 @@ export default function Login({ setToken, baseUrl }) {
                             onMouseOver={(e) => e.target.style.backgroundColor = '#45a049'}
                             onMouseOut={(e) => e.target.style.backgroundColor = '#4CAF50'}
                         >
-                            Login
+                            {t('login.loginButton')}
                         </button>
                     </form>
-                    
                     <div style={{
                         marginTop: '20px',
                         textAlign: 'center',
                         fontSize: '14px',
                         color: '#666'
                     }}>
-                        Don't have an account?<a href="/register" style={{ color: '#4CAF50' }}>Sign up</a><br />
-                        Want to get the source code and account? <a href='https://github.com/Chenchen2001/Online_Meal_System' style={{ color: '#4CAF50' }}>Click here!</a>
+                        🌐<Select defaultValue={i18n.language} options={[
+                            { value: 'zh-CN', label: <span>🇨🇳 简体中文</span> },
+                            { value: 'zh-HK', label: <span>🇭🇰 繁體中文</span> },
+                            { value: 'en', label: <span>🇬🇧 English</span> }
+                            ]} 
+                            onChange={(e) => {
+                                i18n.changeLanguage(e);
+                            }}
+                            style={{marginLeft: 10, width: '9em'}}
+                        /> <br />
+                        {t("login.registerInfo")} <a href="/register" style={{ color: '#4CAF50' }}>{t("login.registerIcon")}</a><br />
+                        {t("login.githubIntro")}<a href='https://github.com/Chenchen2001/Online_Meal_System' style={{ color: '#4CAF50' }}>{t("login.github")}</a>
                     </div>
                 </div>
             </div>

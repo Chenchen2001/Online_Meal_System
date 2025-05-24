@@ -1,0 +1,320 @@
+{
+  "login": {
+    "welcomeBack": "歡迎返嚟",
+    "username": "用戶名",
+    "usernamePlaceholder": "請輸入你嘅用戶名",
+    "password": "密碼",
+    "passwordPlaceholder": "請輸入你嘅密碼",
+    "loginButton": "登入",
+    "registerInfo": "冇帳號？",
+    "registerIcon": "註冊！",
+    "githubIntro": "想攞到源代碼同帳號？",
+    "github": "撳呢度！"
+  },
+  "register": {
+    "title": "開新帳號",
+    "username": "用戶名",
+    "usernamePlaceholder": "請輸入你嘅用戶名",
+    "password": "密碼",
+    "passwordPlaceholder": "請輸入你嘅密碼",
+    "register": "註冊",
+    "signInInfo": "已經有帳號？",
+    "signIn": "登入！"
+  },
+  "main": {
+    "whenChangeLanguage": "注意：數據庫嘅資料唔會跟住轉語言",
+    "newMsg": "收到新訊息",
+    "newMsgPop": "冇訊息功能",
+    "sysUpdate": "有系統更新",
+    "sysUpdatePop":"冇系統更新",
+    "failFetchData":"拎唔到用戶資料，試吓重新登入",
+    "profile": "個人檔案",
+    "logout": "登出",
+    "menu": {
+      "order": "落單",
+      "dashboard": "儀表板",
+      "foodMgmt": "食物管理",
+      "userMgmt": "用戶管理",
+      "catMgmt": "類別管理",
+      "settings": "設定"
+    },
+    "headline": {
+      "order": "落單",
+      "dashboard": "今日銷售",
+      "category": "類別一覽",
+      "users": "用戶一覽",
+      "foods": "食物一覽",
+      "settings": "設定"
+    }
+  },
+  "cat": {
+    "title": "類別管理",
+    "failFetchData": "拎唔到類別資料，試吓重新登入",
+    "failDeleteData": "刪除類別失敗",
+    "add": "加類別",
+    "edit": "改類別",
+    "col": {
+      "id": "ID",
+      "cat": "類別",
+      "sort": "排序",
+      "status": "狀態",
+      "active": "啟用",
+      "inactive": "停用",
+      "action": "操作",
+      "edit": "修改",
+      "delTitle": "刪除項目",
+      "delDesc": "你確定要停用呢個項目？",
+      "delOK": "係",
+      "delCancel": "唔係",
+      "delInactive": "停用"
+    },
+    "modal": {
+      "name": "類別名",
+      "nameMsg": "請輸入類別名",
+      "namePlaceholder": "輸入類別名",
+      "status": "狀態",
+      "avail": "可用",
+      "unsvail": "不可用",
+      "sort": "排序",
+      "sortMsg": "請輸入排序",
+      "ok": "提交",
+      "cancel": "取消"
+    }
+  },
+  "order": {
+    "title": "落單",
+    "button": {
+      "myOrders": "我嘅訂單",
+      "submit": "提交訂單"
+    },
+    "message": {
+      "loadFail": "拎唔到餐單或類別",
+      "loadMyOrdersFail": "拎唔到你嘅訂單",
+      "noDishesSelected": "冇揀到餸",
+      "orderSuccess": "落單成功！",
+      "orderFail": "落單失敗"
+    },
+    "collapse": {
+      "noDishes": "冇餸"
+    },
+    "modal": {
+      "title": "我嘅訂單",
+      "created": "建立時間"
+    },
+    "orderItem": {
+      "orderId": "訂單#",
+      "status": "狀態",
+      "total": "總數"
+    }
+  },
+  "dashboard": {
+    "title": "儀表板",
+    "stats": {
+      "todayOrders": "今日訂單",
+      "todayRevenue": "今日收入",
+      "pendingOrders": "待處理訂單"
+    },
+    "orders": {
+      "title": "最新訂單",
+      "refresh": "更新",
+      "columns": {
+        "orderId": "訂單ID",
+        "status": "狀態",
+        "total": "總數",
+        "items": "項目",
+        "time": "時間",
+        "action": "操作",
+        "noActions": "冇可用操作"
+      },
+      "expanded": {
+        "itemsTitle": "訂單項目",
+        "total": "總數",
+        "acceptTime": "接受時間"
+      }
+    },
+    "actions": {
+      "accept": "接受",
+      "reject": "拒絕",
+      "complete": "標記為完成"
+    },
+    "messages": {
+      "acceptSuccess": "接受訂單成功",
+      "acceptError": "接受訂單失敗",
+      "rejectSuccess": "拒絕訂單成功",
+      "rejectError": "拒絕訂單失敗",
+      "completeSuccess": "標記訂單完成成功",
+      "completeError": "標記訂單完成失敗",
+      "fetchError": "拎唔到資料。詳情：{error}"
+    }
+  },
+  "foodMgmt": {
+    "title": "食物管理",
+    "actions": {
+      "addDish": "加餸",
+      "edit": "修改",
+      "delete": "刪除",
+      "save": "儲存",
+      "cancel": "取消",
+      "search": "搜尋"
+    },
+    "columns": {
+      "id": "ID",
+      "name": "食物名",
+      "category": "類別",
+      "price": "價錢",
+      "image": "圖片",
+      "description": "描述",
+      "status": "狀態",
+      "actions": "操作",
+      "noImage": "冇圖片",
+      "active": "啟用",
+      "inactive": "停用",
+      "unknownCategory": "未知"
+    },
+    "modal": {
+      "titleEdit": "改餐",
+      "titleAdd": "加餐",
+      "form": {
+        "dishName": "餸名",
+        "price": "價錢",
+        "category": "類別",
+        "status": "狀態",
+        "description": "描述",
+        "imageUrl": "網址",
+        "available": "可用",
+        "unavailable": "不可用"
+      }
+    },
+    "filters": {
+      "searchByName": "用名搜尋",
+      "filterByCategory": "用類別篩選",
+      "clearNameTooltip": "清空輸入欄位移除條件",
+      "clearCategoryTooltip": "撳交叉移除條件"
+    },
+    "deleteConfirm": {
+      "title": "刪除項目",
+      "description": "你確定要刪除呢個項目？",
+      "okText": "係",
+      "cancelText": "唔係"
+    },
+    "messages": {
+      "deleteSuccess": "刪除餸成功",
+      "deleteError": "刪除食物資料失敗",
+      "updateSuccess": "更新餸成功",
+      "updateError": "修改餸失敗",
+      "createSuccess": "加餸成功",
+      "createError": "加新餸失敗",
+      "fetchError": "拎唔到食物資料，試吓重新登入",
+      "categoryFetchError": "拎唔到類別資料，試吓重新登入"
+    }
+  },
+  "profile":{
+    "accountSettings": "帳號設定",
+    "loadUserInfo": "載入用戶資料（撳兩下保障私隱）",
+    "openid": "OpenID",
+    "openidPlaceholder": "OpenID",
+    "name": "名",
+    "namePlaceholder": "名",
+    "gender": "性別",
+    "genderMale": "男",
+    "genderFemale": "女",
+    "genderOther": "唔想提供",
+    "genderPlaceholder": "請揀你嘅性別",
+    "oldPassword": "舊密碼",
+    "oldPasswordPlaceholder": "如果要改密碼請輸入舊密碼",
+    "oldPasswordValidation": "如果要改新密碼請先輸入舊密碼",
+    "newPassword": "新密碼",
+    "newPasswordPlaceholder": "輸入新密碼",
+    "newPasswordValidation": "請先輸入舊密碼",
+    "phone": "電話號碼（可以留空）",
+    "phonePlaceholder": "電話號碼",
+    "idNumber": "身份證號碼（可以留空）",
+    "idNumberPlaceholder": "身份證號碼",
+    "avatar": "頭像網址（可以留空）",
+    "avatarPlaceholder": "輸入頭像圖片網址",
+    "avatarPreview": "頭像預覽",
+    "updateProfile": "更新個人檔案",
+    "fetchUserError": "拎唔到用戶",
+    "updateSuccess": "個人檔案已更新。請重新登入。",
+    "updateFail": "更新失敗"
+  },
+  "settings": {
+    "systemSettings": "系統設定",
+    "fetchSettingsError": "拎唔到設定，試吓重新登入",
+    "updateSuccess": "設定更新成功。",
+    "updateError": "更新設定失敗。",
+    "shopName": "店名",
+    "defaultCategory": "預設類別ID",
+    "autoAccept": "自動接受訂單",
+    "customerPhone": "客服電話",
+    "saveSettings": "儲存設定"
+  },
+  "user": {
+    "title": "用戶管理",
+    "addUser": "加用戶",
+    "editUser": "改用戶",
+    "modalSubmit": "提交",
+    "modalCancel": "取消",
+    "form": {
+      "openid": "OpenID",
+      "nickname": "花名",
+      "phone": "電話",
+      "gender": "性別",
+      "genderOptions": {
+        "M": "男",
+        "F": "女",
+        "-": "唔想講"
+      },
+      "idNumber": "身份證號碼",
+      "authority": "權限",
+      "authorityOptions": {
+        "admin": "管理員",
+        "user": "用戶",
+        "customer": "客戶"
+      },
+      "avatar": "頭像",
+      "avatarPlaceholder": "冇頭像 喺上面輸入網址",
+      "nicknameRequired": "請輸入花名"
+    },
+    "table": {
+      "columns": {
+        "id": "ID",
+        "nickname": "花名",
+        "avatar": "頭像",
+        "phone": "電話",
+        "gender": "性別",
+        "authority": "權限",
+        "actions": "操作"
+      },
+      "noAvatar": "冇頭像"
+    },
+    "buttons": {
+      "edit": "修改",
+      "delete": "刪除",
+      "search": "搜尋",
+      "reset": "重置"
+    },
+    "tooltips": {
+      "editYourself": "請去個人檔案修改",
+      "deleteYourself": "你唔可以刪除自己",
+      "inputHint": "清空輸入欄位移除條件",
+      "selectHint": "撳交叉移除條件"
+    },
+    "popconfirm": {
+      "deleteTitle": "刪除用戶",
+      "deleteDesc": "你確定要刪除呢個用戶？",
+      "okText": "係",
+      "cancelText": "唔係"
+    },
+    "messages": {
+      "fetchError": "拎唔到用戶資料，試吓重新登入",
+      "deleteSuccess": "刪除成功",
+      "deleteError": "刪除失敗",
+      "operateSuccess": {
+        "add": "已加",
+        "edit": "已更新"
+      },
+      "operateError": "操作失敗"
+    }
+  }
+}

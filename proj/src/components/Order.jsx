@@ -6,11 +6,13 @@ import {
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 
 const { Panel } = Collapse;
 const { Text } = Typography;
 
 export default function OrderPage({ token, baseUrl }) {
+  const { t } = useTranslation();
   const [dishes, setDishes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [quantities, setQuantities] = useState({});
@@ -35,8 +37,8 @@ export default function OrderPage({ token, baseUrl }) {
       setDishes(dishRes.data.data || []);
       setCategories(catRes.data.data || []);
     })
-    .catch(err => {
-      messageApi.error("Failed to load menu or categories");
+    .catch(() => {
+      messageApi.error(t("order.message.loadFail"));
     })
     .finally(() => {
       setLoading(false);
@@ -50,8 +52,8 @@ export default function OrderPage({ token, baseUrl }) {
     .then(res => {
       setMyOrders(res.data.orders || []);
     })
-    .catch(err => {
-      messageApi.error("Failed to load your orders");
+    .catch(() => {
+      messageApi.error(t("order.message.loadMyOrdersFail"));
     });
   };
 
@@ -71,18 +73,20 @@ export default function OrderPage({ token, baseUrl }) {
         };
       });
 
-    if (items.length === 0) return messageApi.warning("No dishes selected");
+    if (items.length === 0) {
+      return messageApi.warning(t("order.message.noDishesSelected"));
+    }
 
     axios.post(`${baseUrl}createOrder`, { items }, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(() => {
-      messageApi.success("Order placed!");
+      messageApi.success(t("order.message.orderSuccess"));
       setQuantities({});
       fetchMyOrders(); 
     })
     .catch(() => {
-      messageApi.error("Failed to place order");
+      messageApi.error(t("order.message.orderFail"));
     });
   };
 
@@ -93,7 +97,7 @@ export default function OrderPage({ token, baseUrl }) {
 
   const renderDishGroup = (categoryId) => {
     const dishList = dishes.filter(d => d.category_id === categoryId && d.status === 1);
-    if (dishList.length === 0) return <div style={{ paddingLeft: 16 }}>No dishes</div>;
+    if (dishList.length === 0) return <div style={{ paddingLeft: 16 }}>{t("order.collapse.noDishes")}</div>;
 
     return dishList.map(dish => (
       <div
@@ -113,16 +117,17 @@ export default function OrderPage({ token, baseUrl }) {
           gap: 16,
           flex: '1 1 70%'
         }}>
-          {dish.image ?
+          {dish.image ? (
             <Image
               width={70}
               src={dish.image}
               alt={dish.name}
               fallback="https://via.placeholder.com/300x200?text=Failed_to_load_picture"
               style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 6, backgroundColor: '#f6f6f6' }}
-            /> :
-            <span>No image</span>
-          }
+            />
+          ) : (
+            <span>{t("order.collapse.noDishes")}</span>
+          )}
           <div style={{ minWidth: 0 }}>
             <div style={{
               fontWeight: 500,
@@ -158,7 +163,7 @@ export default function OrderPage({ token, baseUrl }) {
       {contextHolder}
 
       <Card
-        title="Place Your Order"
+        title={t("order.title")}
         loading={loading}
         extra={
           <div style={{ display: 'flex', gap: 12 }}>
@@ -166,10 +171,10 @@ export default function OrderPage({ token, baseUrl }) {
               fetchMyOrders();
               setOrderModalVisible(true);
             }}>
-              My Orders
+              {t("order.button.myOrders")}
             </Button>
             <Button type="primary" onClick={handleOrder}>
-              Submit Order
+              {t("order.button.submit")}
             </Button>
           </div>
         }
@@ -185,14 +190,14 @@ export default function OrderPage({ token, baseUrl }) {
 
       <Modal
         open={orderModalVisible}
-        title="My Orders"
+        title={t("order.modal.title")}
         onCancel={() => setOrderModalVisible(false)}
         footer={null}
         width={600}
         styles={{
           body: {
             maxHeight: '75vh',
-            overflowY: 'auto', 
+            overflowY: 'auto',
             padding: '0 24px'
           }
         }}
@@ -202,9 +207,9 @@ export default function OrderPage({ token, baseUrl }) {
           dataSource={myOrders}
           renderItem={order => (
             <List.Item key={order.id}>
-              <Text strong>Order #{order.id}</Text> - {order.status.toUpperCase()} - ￥{Number(order.total_price).toFixed(2)} <br />
-              <Text type="secondary">Created: {moment(order.create_time).format("YYYY-MM-DD HH:mm:ss")}</Text>
-              <ul style={{ marginTop: 8}}>
+              <Text strong>{t("order.orderItem.orderId")}{order.id}</Text> - {order.status.toUpperCase()} - ￥{Number(order.total_price).toFixed(2)} <br />
+              <Text type="secondary">{t("order.modal.created")}: {moment(order.create_time).format("YYYY-MM-DD HH:mm:ss")}</Text>
+              <ul style={{ marginTop: 8 }}>
                 {order.items.map((item, idx) => (
                   <li key={idx}>{`#${item.dish_id}`} {item.name} × {item.quantity} @ ￥{Number(item.price).toFixed(2)}</li>
                 ))}
@@ -213,7 +218,6 @@ export default function OrderPage({ token, baseUrl }) {
           )}
         />
       </Modal>
-
     </>
   );
 }

@@ -9,11 +9,13 @@ import {
   message, 
   Spin 
 } from "antd";
+import { useTranslation } from "react-i18next";
 
-export default function Settings({ token, baseUrl }){
+export default function Settings({ token, baseUrl }) {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  const [messageApi, contextHolder] = message.useMessage()
+  const [messageApi, contextHolder] = message.useMessage();
 
   const fetchSettings = () => {
     setLoading(true);
@@ -35,7 +37,7 @@ export default function Settings({ token, baseUrl }){
     })
     .catch(error => {
       console.error(error);
-      messageApi.error("Failed to fetch settings, try RELOGIN");
+      messageApi.error(t("settings.fetchSettingsError"));
     })
     .finally(() => {
       setLoading(false);
@@ -47,12 +49,12 @@ export default function Settings({ token, baseUrl }){
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(() => {
-      messageApi.success("Settings updated successfully.");
+      messageApi.success(t("settings.updateSuccess"));
       fetchSettings(); // refresh
     })
     .catch(error => {
       console.error(error);
-      messageApi.error("Failed to update settings.");
+      messageApi.error(t("settings.updateError"));
     });
   };
 
@@ -63,38 +65,38 @@ export default function Settings({ token, baseUrl }){
   return (
     <div>
       {contextHolder}
-      <h2>System Settings</h2>
+      <h2>{t("settings.systemSettings")}</h2>
       {loading ? (
         <Spin />
       ) : (
         <Form form={form} layout="vertical" onFinish={onFinish}>
-          <Form.Item label="Shop Name" name="shop_name">
+          <Form.Item label={t("settings.shopName")} name="shop_name">
             <Input />
           </Form.Item>
 
-          <Form.Item label="Default Category ID" name="default_category">
-            <Input disabled/>
+          <Form.Item label={t("settings.defaultCategory")} name="default_category">
+            <Input disabled />
           </Form.Item>
 
           <Form.Item
-            label="Auto Accept Orders"
+            label={t("settings.autoAccept")}
             name="auto_accept_order"
             valuePropName="checked"
           >
             <Switch />
           </Form.Item>
 
-          <Form.Item label="Customer Service Phone" name="customer_service_phone">
+          <Form.Item label={t("settings.customerPhone")} name="customer_service_phone">
             <Input />
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Save Settings
+              {t("settings.saveSettings")}
             </Button>
           </Form.Item>
         </Form>
       )}
     </div>
   );
-};
+}

@@ -20,15 +20,18 @@ import {
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
+
 const { Title, Text } = Typography;
 const { Countdown } = Statistic;
 
 export default function Dashboard({ token, baseUrl }) {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [orders, setOrders] = useState([]);
   const [stats, setStats] = useState(null);
   const [error, setError] = useState('');
-  const [messageApi, contextHolder] = message.useMessage()
+  const [messageApi, contextHolder] = message.useMessage();
 
   useEffect(() => {
     fetchData();
@@ -56,13 +59,12 @@ export default function Dashboard({ token, baseUrl }) {
         }
       })
       .catch(err => {
-        setError(`Failed to fetch data. Details: ${err.message}`);
+        setError(t("dashboard.messages.fetchError", { error: err.message }));
       })
       .finally(() => {
         setLoading(false);
       });
   };
-
 
   const handleAcceptOrder = (orderId) => {
     setLoading(true);
@@ -74,15 +76,15 @@ export default function Dashboard({ token, baseUrl }) {
     )
       .then(response => {
         if (response.data.status === 1) {
-          messageApi.success('Order accepted successfully');
+          messageApi.success(t("dashboard.messages.acceptSuccess"));
           fetchData(); 
         } else {
-          messageApi.error(response.data.message || 'Failed to accept order');
+          messageApi.error(response.data.message || t("dashboard.messages.acceptError"));
         }
       })
       .catch(error => {
         console.error('Accept order error:', error);
-        messageApi.error(error.response?.data?.message || 'Failed to accept order');
+        messageApi.error(error.response?.data?.message || t("dashboard.messages.acceptError"));
       })
       .finally(() => {
         setLoading(false);
@@ -99,15 +101,15 @@ export default function Dashboard({ token, baseUrl }) {
     )
       .then(response => {
         if (response.data.status === 1) {
-          messageApi.success('Order rejected successfully');
-          fetchData(); // Refresh the data
+          messageApi.success(t("dashboard.messages.rejectSuccess"));
+          fetchData();
         } else {
-          messageApi.error(response.data.message || 'Failed to reject order');
+          messageApi.error(response.data.message || t("dashboard.messages.rejectError"));
         }
       })
       .catch(error => {
         console.error('Reject order error:', error);
-        messageApi.error(error.response?.data?.message || 'Failed to reject order');
+        messageApi.error(error.response?.data?.message || t("dashboard.messages.rejectError"));
       })
       .finally(() => {
         setLoading(false);
@@ -124,15 +126,15 @@ export default function Dashboard({ token, baseUrl }) {
     )
       .then(response => {
         if (response.data.status === 1) {
-          messageApi.success('Order marked as completed');
+          messageApi.success(t("dashboard.messages.completeSuccess"));
           fetchData(); 
         } else {
-          messageApi.error(response.data.message || 'Failed to complete order');
+          messageApi.error(response.data.message || t("dashboard.messages.completeError"));
         }
       })
       .catch(error => {
         console.error('Complete order error:', error);
-        messageApi.error(error.response?.data?.message || 'Failed to complete order');
+        messageApi.error(error.response?.data?.message || t("dashboard.messages.completeError"));
       })
       .finally(() => {
         setLoading(false);
@@ -141,12 +143,12 @@ export default function Dashboard({ token, baseUrl }) {
 
   const columns = [
     {
-      title: 'Order ID',
+      title: t("dashboard.orders.columns.orderId"),
       dataIndex: 'id',
       key: 'id',
     },
     {
-      title: 'Status',
+      title: t("dashboard.orders.columns.status"),
       dataIndex: 'status',
       key: 'status',
       render: status => {
@@ -162,29 +164,29 @@ export default function Dashboard({ token, baseUrl }) {
       }
     },
     {
-      title: 'Total',
+      title: t("dashboard.orders.columns.total"),
       dataIndex: 'total_price',
       key: 'total_price',
       render: price => `$${Number(price).toFixed(2)}`
     },
     {
-      title: 'Items',
+      title: t("dashboard.orders.columns.items"),
       dataIndex: 'items',
       key: 'items',
       render: items => (
         <Text>
-          {items.reduce((sum, item) => sum + item.quantity, 0)} items
+          {items.reduce((sum, item) => sum + item.quantity, 0)} {t("dashboard.orders.columns.items")}
         </Text>
       )
     },
     {
-      title: 'Time',
+      title: t("dashboard.orders.columns.time"),
       dataIndex: 'create_time',
       key: 'create_time',
       render: time => moment(time).format('YYYY-MM-DD HH:mm')
     },
     {
-      title: 'Action',
+      title: t("dashboard.orders.columns.action"),
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
@@ -196,7 +198,7 @@ export default function Dashboard({ token, baseUrl }) {
                 onClick={() => handleAcceptOrder(record.id)}
                 loading={loading}
               >
-                Accept
+                {t("dashboard.actions.accept")}
               </Button>
               <Button 
                 size="small" 
@@ -204,7 +206,7 @@ export default function Dashboard({ token, baseUrl }) {
                 onClick={() => handleRejectOrder(record.id)}
                 loading={loading}
               >
-                Reject
+                {t("dashboard.actions.reject")}
               </Button>
             </>
           )}
@@ -215,11 +217,11 @@ export default function Dashboard({ token, baseUrl }) {
               onClick={() => handleCompleteOrder(record.id)}
               loading={loading}
             >
-              Mark as Completed
+              {t("dashboard.actions.complete")}
             </Button>
           )}
           {(record.status === 'completed' || record.status === 'cancelled') && (
-            <Text type="secondary">No actions available</Text>
+            <Text type="secondary">{t("dashboard.orders.columns.noActions")}</Text>
           )}
         </Space>
       )
@@ -228,7 +230,7 @@ export default function Dashboard({ token, baseUrl }) {
 
   return (
     <>
-    {contextHolder}
+      {contextHolder}
       <div style={{ marginBottom: 24 }}>
         <div
           style={{
@@ -245,7 +247,7 @@ export default function Dashboard({ token, baseUrl }) {
                 icon={<UserOutlined />} 
               />
               <div>
-                <Text type="secondary">Today's Orders</Text>
+                <Text type="secondary">{t("dashboard.stats.todayOrders")}</Text>
                 <Title level={3} style={{ margin: 0 }}>
                   {stats?.todayOrders || '--'}
                 </Title>
@@ -261,7 +263,7 @@ export default function Dashboard({ token, baseUrl }) {
                 icon={<ShoppingCartOutlined />} 
               />
               <div>
-                <Text type="secondary">Today's Revenue</Text>
+                <Text type="secondary">{t("dashboard.stats.todayRevenue")}</Text>
                 <Title level={3} style={{ margin: 0 }}>
                   ${Number(stats?.todayRevenue).toFixed(2) || '--'}
                 </Title>
@@ -279,7 +281,7 @@ export default function Dashboard({ token, baseUrl }) {
                 />
               </Badge>
               <div>
-                <Text type="secondary">Pending Orders</Text>
+                <Text type="secondary">{t("dashboard.stats.pendingOrders")}</Text>
                 <Title level={3} style={{ margin: 0 }}>
                   {stats?.pendingOrders || '--'}
                 </Title>
@@ -290,14 +292,14 @@ export default function Dashboard({ token, baseUrl }) {
       </div>
 
       <Card 
-        title="Recent Orders" 
+        title={t("dashboard.orders.title")} 
         extra={
           <Button 
             icon={<SyncOutlined />} 
             loading={loading}
             onClick={fetchData}
           >
-            Refresh
+            {t("dashboard.orders.refresh")}
           </Button>
         }
         style={{overflow: 'auto'}}
@@ -321,17 +323,17 @@ export default function Dashboard({ token, baseUrl }) {
           expandable={{
             expandedRowRender: record => (
               <div style={{ margin: 0 }}>
-                <Title level={5}>Order Items</Title>
+                <Title level={5}>{t("dashboard.orders.expanded.itemsTitle")}</Title>
                 <ul>
                   {record.items.map((item, index) => (
                     <li key={index}>{`#${item.dish_id}`} {item.name} × {item.quantity} @ ￥{Number(item.price).toFixed(2)}</li>
                   ))}
                 </ul>
-                <Text strong>Total: ￥{Number(record.total_price).toFixed(2)}</Text>
+                <Text strong>{t("dashboard.orders.expanded.total")}: ￥{Number(record.total_price).toFixed(2)}</Text>
                 {record.status === 'pending' && (
                   <div style={{ marginTop: 16 }}>
                     <Countdown 
-                      title="Time to accept" 
+                      title={t("dashboard.orders.expanded.acceptTime")} 
                       value={moment(record.create_time).add(15, 'minutes')} 
                       format="mm:ss"
                     />

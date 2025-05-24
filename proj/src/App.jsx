@@ -6,6 +6,8 @@ import "./App.css"
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Register from './pages/Register';
+// eslint-disable-next-line
+import i18n from './react-i18next-config'
 
 export default function App({ baseUrl }){
     const [token, setToken] = useState(null);
