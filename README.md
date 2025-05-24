@@ -5,6 +5,8 @@ The frontend supports i18n for simplified Chinese, Hong Kong traditional Chinese
 
 The backend supports English only.
 
+Default accounts are available in `account.md`.
+
 - `completed` folder is the compiled react frontend program
 - `server` folder is the backend program
 - `proj` folder is the source code of the react frontend program
